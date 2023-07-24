@@ -21,18 +21,36 @@ void MakeArrayFields(DynamicArray* dynamicArray, int arrayFields[], int count)
 
 void AddElement(DynamicArray* dynamicArray, int index, int element)
 {
-	dynamicArray->Length += 1;
-	AncreasingTheArray(dynamicArray);
-	for (int i = 0; i < dynamicArray->Length; ++i)
+	if (index > dynamicArray->Length)
 	{
-		if (index == i)
+		int oldLenght = dynamicArray->Length;
+		dynamicArray->Length = index + 1;
+		AncreasingTheArray(dynamicArray);
+		for (int i = oldLenght; i < dynamicArray->Length; ++i)
 		{
-			for (int j = dynamicArray->Length - 1; j > i; --j)
+			if (i == dynamicArray->Length - 1)
 			{
-				dynamicArray->Array[j] = dynamicArray->Array[j - 1];
+				dynamicArray->Array[i] = element;
+				break;
 			}
-			dynamicArray->Array[i] = element;
-			break;
+			dynamicArray->Array[i] = 0;
+		}
+	}
+	else
+	{
+		dynamicArray->Length += 1;
+		AncreasingTheArray(dynamicArray);
+		for (int i = 0; i < dynamicArray->Length; ++i)
+		{
+			if (index == i)
+			{
+				for (int j = dynamicArray->Length - 1; j > i; --j)
+				{
+					dynamicArray->Array[j] = dynamicArray->Array[j - 1];
+				}
+				dynamicArray->Array[i] = element;
+				break;
+			}
 		}
 	}
 }

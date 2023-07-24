@@ -19,9 +19,6 @@ int IsPossitiveNumber(int number);
 /// </summary>
 int IsNumberOrLetter();
 
-
-bool IsCreatedOrNot(DynamicArray* dynamicArray);
-
 int main()
 {
 	DynamicArray* dynamicArray = new DynamicArray();
