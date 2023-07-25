@@ -4,30 +4,30 @@
 using namespace std;
 
 /// <summary>
-/// Ввод элемента или индекса
+/// Entering an element or index.
 /// </summary>
-/// <param name="flag"> - Вводим элемент - true. Вводим индекс - false.</param>
+/// <param name="flag">We enter the element - true. Enter the index - false.</param>
 int EnterTheElementOrIndex(bool flag);
 
 /// <summary>
-/// Проверка положительное число или нет
+/// Checking if a number is positive or not.
 /// </summary>
 int IsPossitiveNumber(int number);
 
 /// <summary>
-/// Проверка введено число или символ
+/// Check entered number or character.
 /// </summary>
 int IsNumberOrLetter();
 
 int main()
 {
 	DynamicArray* dynamicArray = new DynamicArray();
+	int* showArrayBuffer = new int[dynamicArray->Length];
 
 	while (true)
 	{
 		cout << "Length: "<< dynamicArray->Length << " " << "Capacity: " << dynamicArray->Capacity << endl;
 		cout << "Array: ";
-		int* showArrayBuffer = new int[dynamicArray->Length];
 		showArrayBuffer = ShowArray(dynamicArray);
 		for (int i = 0; i < dynamicArray->Length; i++)
 		{

@@ -1,105 +1,105 @@
 #pragma once
 /// <summary>
-/// Динамический массив
+/// Dynamic Array.
 /// </summary>
 struct DynamicArray
 {
 	/// <summary>
-	/// Ссылка на данные в динамическом массиве
+	/// Referencing data in a dynamic array.
 	/// </summary>
 	int* Array;
 
 	/// <summary>
-	/// Длина динамического массива
+	/// Dynamic array length.
 	/// </summary>
 	int Length = 0;
 
 	/// <summary>
-	/// Вместимость динамического массива
+	/// Dynamic array capacity.
 	/// </summary>
 	int Capacity = 4;
 
 	/// <summary>
-	/// Фактор роста динамического массива
+	/// Dynamic array growth factor.
 	/// </summary>
 	const int GrowthFactor = 2;
 };
 
 /// <summary>
-/// Увеличение массива вместительности динамического массива
+/// Increasing the array capacity of a dynamic array.
 /// </summary>
 /// <param name="dynamicArray"> - Указатель на динамический массив</param>
 void AncreasingTheArray(DynamicArray* dynamicArray);
 
 /// <summary>
-/// Добавление определенного числа элементов в динамический массив
+/// Adding a specific number of elements to a dynamic array.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
-/// <param name="arrayFields"> - Массив значений для динамического массива</param>
-/// <param name="count"> - Количество элементов в динамическом массиве</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
+/// <param name="arrayFields">Array of values for dynamic array.</param>
+/// <param name="count">Number of elements in dynamic array.</param>
 void MakeArrayFields(DynamicArray* dynamicArray, int arrayFields[], int count);
 
 /// <summary>
-/// Добавление элемента после определенного индекса
+/// Adding an element after a specific index.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
-/// <param name="index"> - Индекс элемента</param>
-/// <param name="element"> - Значение элемента</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
+/// <param name="index">Element index.</param>
+/// <param name="element">Element value.</param>
 void InsertAfterElement(DynamicArray* dynamicArray, int index, int element);
 
 /// <summary>
-/// Добавление элемента по индексу
+/// Adding an element by index.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
-/// <param name="index"> - Индекс элемента</param>
-/// <param name="element"> - Значение элемента</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
+/// <param name="index">Element index.</param>
+/// <param name="element">Element value.</param>
 void AddElement(DynamicArray* dynamicArray, int index, int element);
 
 /// <summary>
-/// Удаление элемента
+/// Removing an element.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
-/// <param name="index"> - Индекс элемента</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
+/// <param name="index">Element index.</param>
 void DeleteElement(DynamicArray* dynamicArray, int index);
 
 /// <summary>
-/// Добавление элемента в начало
+/// Adding an element to the beginning.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
-/// <param name="element"> - Значение элемента</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
+/// <param name="element">Element value.</param>
 void InsertInTheBegining(DynamicArray* dynamicArray, int element);
 
 /// <summary>
-/// Добавление элемента в конец
+/// Adding an element to the end.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
-/// <param name="element"> - Значение элемента</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
+/// <param name="element">Element value.</param>
 void InsertInTheEnd(DynamicArray* dynamicArray, int element);
 
 /// <summary>
-/// Сортировка вставками
+/// Insertion sort.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
 void InsertionSort(DynamicArray* dynamicArray);
 
 /// <summary>
-/// Линейный поиск
+/// Linear search.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
-/// <param name="element"> - Искомый элемент</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
+/// <param name="element">Search element.</param>
 int LinearSearch(DynamicArray* dynamicArray, int element);
 
 /// <summary>
-/// Бинарный поиск
+/// Binary search.
 /// </summary>
-/// <param name="array"> - Указатель на данные из динамического массива</param>
-/// <param name="element"> - Искомый элемент</param>
-/// <param name="leftIndex"> - Левый индекс</param>
-/// <param name="rightIndex"> - Правый индекс</param>
+/// <param name="array">Pointer to data from dynamic array.</param>
+/// <param name="element">Search element.</param>
+/// <param name="leftIndex">Left index.</param>
+/// <param name="rightIndex">Right index.</param>
 int BinarySearch(int *array, int element, int leftIndex, int rightIndex);
 
 /// <summary>
-/// Показать массив
+/// Show array.
 /// </summary>
-/// <param name="dynamicArray"> - Указатель на динамический массив</param>
+/// <param name="dynamicArray">Pointer to dynamic array.</param>
 int* ShowArray(DynamicArray* dynamicArray);
