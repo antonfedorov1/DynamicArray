@@ -13,7 +13,7 @@ int EnterTheElementOrIndex(bool flag);
 /// <summary>
 /// Checking if a number is positive or not.
 /// </summary>
-///	<param name="number"></param>
+///	<param name="number">Number.</param>
 ///	<returns>Positive number.</returns>
 int IsPossitiveNumber(int number);
 
@@ -25,12 +25,13 @@ int IsNumberOrLetter();
 
 int main()
 {
-	DynamicArray* dynamicArray = new DynamicArray();
+	auto dynamicArray = new DynamicArray();
 
 	while (true)
 	{
-		cout << "Length: "<< dynamicArray->GetLength() << " " << "Capacity: " << dynamicArray->GetCapacity() << endl;
-		cout << "_array: ";
+		cout << "Length: "<< dynamicArray->GetLength() << " "
+			<< "Capacity: " << dynamicArray->GetCapacity() << endl;
+		cout << "Array: ";
 		const int* showArrayBuffer = new int [dynamicArray->GetLength()];
 		showArrayBuffer = dynamicArray->GetArray();
 		for (int i = 0; i < dynamicArray->GetLength(); i++)
@@ -45,19 +46,15 @@ int main()
 		cout << "6.Insert an element in the end." << endl;
 		cout << "7.Sorting array." << endl;
 		cout << "8.Linear search for an element in an array" << endl;
-		cout << "9.Binary search for an element in an array" << endl;
+		cout << "9.Binary search for an element in an array (Sorting is called before the search)" << endl;
 		cout << "10.Out of the program." << endl;
 
-		int numberAction = 0;
-		cin >> numberAction;
-
-		switch (numberAction)
+		switch (IsNumberOrLetter())
 		{
 		case 1:
 		{
 			cout << "How many elements do you want to make?" << endl;
-			int count;
-			count = IsNumberOrLetter();
+			const int count = IsNumberOrLetter();
 			int* arrayFields = new int[count];
 			for (int i = 0; i < count; i++)
 			{
@@ -77,8 +74,8 @@ int main()
 					<< endl << endl;
 				break;
 			}
-			int index = EnterTheElementOrIndex(false);
-			int element = EnterTheElementOrIndex(true);
+			const int index = EnterTheElementOrIndex(false);
+			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->AddElement(index, element);
 			system("cls");
 			break;
@@ -92,7 +89,7 @@ int main()
 					<< endl << endl;
 				break;
 			}
-			int index = EnterTheElementOrIndex(false);
+			const int index = EnterTheElementOrIndex(false);
 			dynamicArray->DeleteElement(index);
 			system("cls");
 			break;
@@ -106,8 +103,8 @@ int main()
 					<< endl << endl;
 				break;
 			}
-			int index = EnterTheElementOrIndex(false);
-			int element = EnterTheElementOrIndex(true);
+			const int index = EnterTheElementOrIndex(false);
+			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->InsertAfterElement(index, element);
 			system("cls");
 			break;
@@ -121,7 +118,7 @@ int main()
 					<< endl << endl;
 				break;
 			}
-			int element = EnterTheElementOrIndex(true);
+			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->InsertInTheBegining(element);
 			system("cls");
 			break;
@@ -135,7 +132,7 @@ int main()
 					<< endl << endl;
 				break;
 			}
-			int element = EnterTheElementOrIndex(true);
+			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->InsertInTheEnd(element);
 			system("cls");
 			break;
@@ -162,12 +159,12 @@ int main()
 					<< endl << endl;
 				break;
 			}
-			int element = EnterTheElementOrIndex(true);
-			int linearSearchNumber = dynamicArray->LinearSearch(element);
+			const int element = EnterTheElementOrIndex(true);
+			const int linearSearchNumber = dynamicArray->LinearSearch(element);
 			system("cls");
 			if (linearSearchNumber >= 0)
 			{
-				cout << "The index of the element " << element << " : " << linearSearchNumber << endl;
+				cout << "Number " << element << " is at index " << linearSearchNumber << endl;
 			}
 			else
 			{
@@ -184,9 +181,9 @@ int main()
 					<< endl << endl;
 				break;
 			}
-			int element = EnterTheElementOrIndex(true);
+			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->InsertionSort();
-			int indexOfElement = dynamicArray->BinarySearch(dynamicArray->GetArray(), element, 0, dynamicArray->GetLength() - 1);
+			const int indexOfElement = dynamicArray->BinarySearch(dynamicArray->GetArray(), element, 0, dynamicArray->GetLength() - 1);
 			system("cls");
 			cout << "The index of the element " << element << " : " << indexOfElement << endl;
 			break;
@@ -238,6 +235,7 @@ int IsPossitiveNumber(int number)
 		number = IsNumberOrLetter();
 		IsPossitiveNumber(number);
 	}
+	return 0;
 }
 
 int IsNumberOrLetter()
