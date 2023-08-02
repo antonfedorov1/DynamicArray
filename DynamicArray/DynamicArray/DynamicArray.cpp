@@ -1,110 +1,125 @@
 #include <iostream>
 #include "DynamicArray.h"
 
-void AncreasingTheArray(DynamicArray* dynamicArray)
+int* DynamicArray::GetArray()
 {
-	while (dynamicArray->Length > dynamicArray->Capacity)
+	return _array;
+}
+
+int DynamicArray::GetLength()
+{
+	return _length;
+}
+
+int DynamicArray::GetCapacity()
+{
+	return _capacity;
+}
+
+void DynamicArray::AncreasingTheArray()
+{
+	while (_length > _capacity)
 	{
-		if (dynamicArray->Length > dynamicArray->Capacity)
+		if (_length > _capacity)
 		{
-			dynamicArray->Capacity *= dynamicArray->GrowthFactor;
+			_capacity *= _growthFactor;
 		}
 	}	
 }
 
-void MakeArrayFields(DynamicArray* dynamicArray, int arrayFields[], int count)
+void DynamicArray::MakeArrayFields(int arrayFields[], int count)
 {
-	dynamicArray->Length = count;
-	AncreasingTheArray(dynamicArray);
-	dynamicArray->Array = arrayFields;
+	_length = count;
+	AncreasingTheArray();
+	_array = arrayFields;
 }
 
-void AddElement(DynamicArray* dynamicArray, int index, int element)
+void DynamicArray::AddElement(int index, int element)
 {
-	if (index > dynamicArray->Length)
+	if (index > _length)
 	{
-		int oldLenght = dynamicArray->Length;
-		dynamicArray->Length = index + 1;
-		AncreasingTheArray(dynamicArray);
-		for (int i = oldLenght; i < dynamicArray->Length; ++i)
+		const int oldLenght = _length;
+		_length = index + 1;
+		AncreasingTheArray();
+		for (int i = oldLenght; i < _length; ++i)
 		{
-			if (i == dynamicArray->Length - 1)
+			if (i == _length - 1)
 			{
-				dynamicArray->Array[i] = element;
+				_array[i] = element;
 				break;
 			}
-			dynamicArray->Array[i] = 0;
+			_array[i] = 0;
 		}
 	}
 	else
 	{
-		dynamicArray->Length += 1;
-		AncreasingTheArray(dynamicArray);
-		for (int i = 0; i < dynamicArray->Length; ++i)
+		_length += 1;
+		AncreasingTheArray();
+		for (int i = 0; i < _length; ++i)
 		{
 			if (index == i)
 			{
-				for (int j = dynamicArray->Length - 1; j > i; --j)
+				for (int j = _length - 1; j > i; --j)
 				{
-					dynamicArray->Array[j] = dynamicArray->Array[j - 1];
+					_array[j] = _array[j - 1];
 				}
-				dynamicArray->Array[i] = element;
+				_array[i] = element;
 				break;
 			}
 		}
 	}
 }
 
-void InsertAfterElement(DynamicArray* dynamicArray, int index, int element)
+void DynamicArray::InsertAfterElement(int index, int element)
 {
-	AddElement(dynamicArray, index + 1, element);
+	AddElement(index + 1, element);
 }
 
-void InsertInTheBegining(DynamicArray* dynamicArray, int element)
+void DynamicArray::InsertInTheBegining(int element)
 {
-	AddElement(dynamicArray, 0, element);
+	AddElement(0, element);
 }
 
-void InsertInTheEnd(DynamicArray* dynamicArray, int element)
+void DynamicArray::InsertInTheEnd(int element)
 {
-	AddElement(dynamicArray, dynamicArray->Length, element);
+	AddElement(_length, element);
 }
 
-void DeleteElement(DynamicArray* dynamicArray, int index)
+void DynamicArray::DeleteElement(int index)
 {
-	for (int i = 0; i < dynamicArray->Length; ++i)
+	for (int i = 0; i < _length; ++i)
 	{
 		if (index == i)
 		{
-			for (int j = i; j < dynamicArray->Length; j++)
+			for (int j = i; j < _length; j++)
 			{
-				dynamicArray->Array[j] = dynamicArray->Array[j + 1];
+				_array[j] = _array[j + 1];
 			}
-			dynamicArray->Array[dynamicArray->Length] = 0;
-			dynamicArray->Length -= 1;
+			_array[_length] = 0;
+			_length -= 1;
 			break;
 		}
 	}
 }
 
-void InsertionSort(DynamicArray* dynamicArray)
+void DynamicArray::InsertionSort()
 {
-	for (int i = 1; i < dynamicArray->Length; i++)
+	for (int i = 1; i < _length; i++)
 	{
 		int j = i - 1;
-		while (j >= 0 && dynamicArray->Array[j] > dynamicArray->Array[j + 1])
+		while (j >= 0 && _array[j] > _array[j + 1])
 		{
-			std::swap(dynamicArray->Array[j], dynamicArray->Array[j + 1]);
+			std::swap(_array[j], _array[j + 1]);
 			j--;
 		}
 	}
 }
 
-int LinearSearch(DynamicArray * dynamicArray, int element)
+int DynamicArray::LinearSearch(int element)
 {
-	for (int i = 0; i < dynamicArray->Length; i++)
+	for (int i = 0; i < _length; i++)
 	{
-		if (dynamicArray->Array[i] == element)
+		if (_array[i] == element)
 		{
 			return i;
 		}
@@ -112,7 +127,7 @@ int LinearSearch(DynamicArray * dynamicArray, int element)
 	return -1;
 }
 
-int BinarySearch(int *array, int element, int leftIndex, int rightIndex)
+int DynamicArray::BinarySearch(int* array, int element, int leftIndex, int rightIndex)
 {
 	if (leftIndex > rightIndex)
 	{
@@ -131,9 +146,5 @@ int BinarySearch(int *array, int element, int leftIndex, int rightIndex)
 	{
 		return centre;
 	}
-}
-
-int* ShowArray(DynamicArray * dynamicArray)
-{
-	return dynamicArray->Array;
+	return 0;
 }
