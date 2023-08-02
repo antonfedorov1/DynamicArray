@@ -1,4 +1,5 @@
 #pragma once
+
 /// <summary>
 /// Dynamic _array.
 /// </summary>
@@ -29,22 +30,26 @@ public:
 	/// <summary>
 	/// Returns an array.
 	/// </summary>
+	///	<returns>An array of values.</returns>
 	int* GetArray();
 
 	/// <summary>
 	/// Returns the length of an array.
 	/// </summary>
+	/// <returns>The length of the array.</returns>
 	int GetLength();
 
 	/// <summary>
 	/// Returns the depth of an array.
 	/// </summary>
+	///	<returns>The depth of the array.</returns>
 	int GetCapacity();
 
 	/// <summary>
 	/// Increasing the array capacity of a dynamic array.
 	/// </summary>
 	void AncreasingTheArray();
+
 	/// <summary>
 	/// Adding a specific number of elements to a dynamic array.
 	/// </summary>
@@ -93,6 +98,7 @@ public:
 	/// Linear search.
 	/// </summary>
 	/// <param name="element">Search element.</param>
+	///	<returns>The index of the element to be searched.</returns>
 	int LinearSearch(int element);
 
 	/// <summary>
@@ -102,5 +108,6 @@ public:
 	/// <param name="element">Search element.</param>
 	/// <param name="leftIndex">Left index.</param>
 	/// <param name="rightIndex">Right index.</param>
+	///	<returns>The index of the element to be searched.</returns>
 	int BinarySearch(int* array, int element, int leftIndex, int rightIndex);
 };

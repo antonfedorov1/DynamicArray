@@ -7,16 +7,20 @@ using namespace std;
 /// Entering an element or index.
 /// </summary>
 /// <param name="flag">We enter the element - true. Enter the index - false.</param>
+///	<returns>Number.</returns>
 int EnterTheElementOrIndex(bool flag);
 
 /// <summary>
 /// Checking if a number is positive or not.
 /// </summary>
+///	<param name="number"></param>
+///	<returns>Positive number.</returns>
 int IsPossitiveNumber(int number);
 
 /// <summary>
 /// Check entered number or character.
 /// </summary>
+///	<returns>Number.</returns>
 int IsNumberOrLetter();
 
 int main()
