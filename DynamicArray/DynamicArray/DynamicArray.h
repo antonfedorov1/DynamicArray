@@ -53,9 +53,8 @@ public:
 	/// <summary>
 	/// Adding a specific number of elements to a dynamic array.
 	/// </summary>
-	/// <param name="arrayFields">_array of values for dynamic array.</param>
-	/// <param name="count">Number of elements in dynamic array.</param>
-	void MakeArrayFields(int arrayFields[], int count);
+	///	<returns>True or false.</returns>
+	bool IsArrayCreated();
 
 	/// <summary>
 	/// Adding an element after a specific index.

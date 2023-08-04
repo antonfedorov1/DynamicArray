@@ -23,9 +23,16 @@ int IsPossitiveNumber(int number);
 ///	<returns>Number.</returns>
 int IsNumberOrLetter();
 
+/// <summary>
+/// Checking for an empty array.
+/// </summary>
+///	<param name="dynamicArray">Dynamic array.</param>
+///	<returns>True or false.</returns>
+bool IsEmptyArray(DynamicArray* dynamicArray);
+
 int main()
 {
-	auto dynamicArray = new DynamicArray();
+	DynamicArray *dynamicArray = new DynamicArray();
 
 	while (true)
 	{
@@ -53,27 +60,20 @@ int main()
 		{
 		case 1:
 		{
-			cout << "How many elements do you want to make?" << endl;
-			const int count = IsNumberOrLetter();
-			int* arrayFields = new int[count];
-			for (int i = 0; i < count; i++)
-			{
-				cout << "\nEnter the element array[" << i << "]: ";
-				arrayFields[i] = IsNumberOrLetter();
-			}
-			dynamicArray->MakeArrayFields(arrayFields, count);
 			system("cls");
+			if (dynamicArray->IsArrayCreated())
+			{
+				cout << "Array created" << endl << endl;
+			}
+			else
+			{
+				cout << "The array has already been created!" << endl << endl;
+			}
 			break;
 		}
 		case 2:
 		{
-			if (dynamicArray->GetLength() == 0)
-			{
-				system("cls");
-				cout << "The array has not been created. To create an array, use the first menu item."
-					<< endl << endl;
-				break;
-			}
+			if (!IsEmptyArray(dynamicArray)) { break; }
 			const int index = EnterTheElementOrIndex(false);
 			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->AddElement(index, element);
@@ -82,13 +82,7 @@ int main()
 		}
 		case 3:
 		{
-			if (dynamicArray->GetLength() == 0)
-			{
-				system("cls");
-				cout << "The array has not been created. To create an array, use the first menu item."
-					<< endl << endl;
-				break;
-			}
+			if (!IsEmptyArray(dynamicArray)) { break; }
 			const int index = EnterTheElementOrIndex(false);
 			dynamicArray->DeleteElement(index);
 			system("cls");
@@ -96,13 +90,7 @@ int main()
 		}
 		case 4:
 		{
-			if (dynamicArray->GetLength() == 0)
-			{
-				system("cls");
-				cout << "The array has not been created. To create an array, use the first menu item."
-					<< endl << endl;
-				break;
-			}
+			if (!IsEmptyArray(dynamicArray)) { break; }
 			const int index = EnterTheElementOrIndex(false);
 			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->InsertAfterElement(index, element);
@@ -111,13 +99,7 @@ int main()
 		}
 		case 5:
 		{
-			if (dynamicArray->GetLength() == 0)
-			{
-				system("cls");
-				cout << "The array has not been created. To create an array, use the first menu item."
-					<< endl << endl;
-				break;
-			}
+			if (!IsEmptyArray(dynamicArray)) { break; }
 			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->InsertInTheBegining(element);
 			system("cls");
@@ -125,13 +107,7 @@ int main()
 		}
 		case 6:
 		{
-			if (dynamicArray->GetLength() == 0)
-			{
-				system("cls");
-				cout << "The array has not been created. To create an array, use the first menu item."
-					<< endl << endl;
-				break;
-			}
+			if (!IsEmptyArray(dynamicArray)) { break; }
 			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->InsertInTheEnd(element);
 			system("cls");
@@ -139,26 +115,14 @@ int main()
 		}
 		case 7:
 		{
-			if (dynamicArray->GetLength() == 0)
-			{
-				system("cls");
-				cout << "The array has not been created. To create an array, use the first menu item."
-					<< endl << endl;
-				break;
-			}
+			if (!IsEmptyArray(dynamicArray)) { break; }
 			dynamicArray->InsertionSort();
 			system("cls");
 			break;
 		}
 		case 8:
 		{
-			if (dynamicArray->GetLength() == 0)
-			{
-				system("cls");
-				cout << "The array has not been created. To create an array, use the first menu item."
-					<< endl << endl;
-				break;
-			}
+			if (!IsEmptyArray(dynamicArray)) { break; }
 			const int element = EnterTheElementOrIndex(true);
 			const int linearSearchNumber = dynamicArray->LinearSearch(element);
 			system("cls");
@@ -174,13 +138,7 @@ int main()
 		}
 		case 9:
 		{
-			if (dynamicArray->GetLength() == 0)
-			{
-				system("cls");
-				cout << "The array has not been created. To create an array, use the first menu item."
-					<< endl << endl;
-				break;
-			}
+			if (!IsEmptyArray(dynamicArray)) { break; }
 			const int element = EnterTheElementOrIndex(true);
 			dynamicArray->InsertionSort();
 			const int indexOfElement = dynamicArray->BinarySearch(dynamicArray->GetArray(), element, 0, dynamicArray->GetLength() - 1);
@@ -249,4 +207,16 @@ int IsNumberOrLetter()
 		cout << "Insert the number ";
 	}
 	return valueToValidation;
+}
+
+bool IsEmptyArray(DynamicArray *dynamicArray)
+{
+	if (dynamicArray->GetArray() == nullptr)
+	{
+		system("cls");
+		cout << "The array has not been created. To create an array, use the first menu item."
+			<< endl << endl;
+		return false;
+	}
+	return true;
 }

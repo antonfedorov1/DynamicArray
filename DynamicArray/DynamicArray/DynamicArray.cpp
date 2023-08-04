@@ -18,20 +18,34 @@ int DynamicArray::GetCapacity()
 
 void DynamicArray::AncreasingTheArray()
 {
-	while (_length > _capacity)
+	if (_length > _capacity)
 	{
-		if (_length > _capacity)
+		const int oldLenght = GetLength() - 1;
+		const int* oldArray = _array;
+
+		while (_length > _capacity)
 		{
 			_capacity *= _growthFactor;
 		}
-	}	
+
+		int* newArray = new int[GetCapacity()];
+		for (int i = 0; i < oldLenght; i++)
+		{
+			newArray[i] = oldArray[i];
+		}
+		delete[] _array;
+		_array = newArray;
+	}
 }
 
-void DynamicArray::MakeArrayFields(int arrayFields[], int count)
+bool DynamicArray::IsArrayCreated()
 {
-	_length = count;
-	AncreasingTheArray();
-	_array = arrayFields;
+	if (_array == nullptr)
+	{
+		_array = new int[GetCapacity()];
+		return true;
+	}
+	return false;
 }
 
 void DynamicArray::AddElement(int index, int element)
@@ -87,19 +101,13 @@ void DynamicArray::InsertInTheEnd(int element)
 
 void DynamicArray::DeleteElement(int index)
 {
-	for (int i = 0; i < _length; ++i)
+	for (int i = index; i < _length; i++)
 	{
-		if (index == i)
-		{
-			for (int j = i; j < _length; j++)
-			{
-				_array[j] = _array[j + 1];
-			}
-			_array[_length] = 0;
-			_length -= 1;
-			break;
-		}
+		_array[i] = _array[i + 1];
 	}
+	_array[_length] = NULL;
+	_length -= 1;
+	if (GetLength() == 0) { _array = nullptr; }
 }
 
 void DynamicArray::InsertionSort()
