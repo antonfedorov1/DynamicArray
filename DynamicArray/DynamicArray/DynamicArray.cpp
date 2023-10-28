@@ -20,19 +20,12 @@ void DynamicArray::AncreasingTheArray()
 {
 	if (_length > _capacity)
 	{
-		const int oldLenght = GetLength() - 1;
-		const int* oldArray = _array;
-
 		while (_length > _capacity)
 		{
 			_capacity *= _growthFactor;
 		}
-
-		int* newArray = new int[GetCapacity()];
-		for (int i = 0; i < oldLenght; i++)
-		{
-			newArray[i] = oldArray[i];
-		}
+		auto* newArray = new int[_capacity];
+		memcpy(newArray, *&_array, _length * sizeof(int));
 		delete[] _array;
 		_array = newArray;
 	}
@@ -42,7 +35,7 @@ bool DynamicArray::IsArrayCreated()
 {
 	if (_array == nullptr)
 	{
-		_array = new int[GetCapacity()];
+		_array = new int[_capacity];
 		return true;
 	}
 	return false;
@@ -155,4 +148,9 @@ int DynamicArray::BinarySearch(int* array, int element, int leftIndex, int right
 		return centre;
 	}
 	return 0;
+}
+
+DynamicArray::~DynamicArray()
+{
+	delete[] _array;
 }

@@ -36,16 +36,7 @@ int main()
 
 	while (true)
 	{
-		cout << "Length: "<< dynamicArray->GetLength() << " "
-			<< "Capacity: " << dynamicArray->GetCapacity() << endl;
-		cout << "Array: ";
-		const int* showArrayBuffer = new int [dynamicArray->GetLength()];
-		showArrayBuffer = dynamicArray->GetArray();
-		for (int i = 0; i < dynamicArray->GetLength(); i++)
-		{
-			cout << "["<< i <<"]: " << showArrayBuffer[i] << " ";
-		}
-		cout << "\n\n1.Make the array fields." << endl;
+		cout << "\n1.Make the array fields." << endl;
 		cout << "2.Add element by index." << endl;
 		cout << "3.Delete an element." << endl;
 		cout << "4.Insert an element after element." << endl;
@@ -54,7 +45,8 @@ int main()
 		cout << "7.Sorting array." << endl;
 		cout << "8.Linear search for an element in an array" << endl;
 		cout << "9.Binary search for an element in an array (Sorting is called before the search)" << endl;
-		cout << "10.Out of the program." << endl;
+		cout << "10.Print dynamic array values." << endl;
+		cout << "11.Out of the program." << endl;
 
 		switch (IsNumberOrLetter())
 		{
@@ -148,9 +140,19 @@ int main()
 		}
 		case 10:
 		{
-			showArrayBuffer = nullptr;
-			dynamicArray = nullptr;
-			delete[] showArrayBuffer;
+			system("cls");
+			cout << "Length: " << dynamicArray->GetLength() << " "
+				<< "Capacity: " << dynamicArray->GetCapacity() << endl;
+			cout << "Array: ";
+
+			for (int i = 0; i < dynamicArray->GetLength(); i++)
+			{
+				cout << "[" << i << "]: " << dynamicArray->GetArray()[i] << " ";
+			}
+			break;
+		}
+		case 11:
+		{
 			delete dynamicArray;
 			return 0;
 		}

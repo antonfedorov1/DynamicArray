@@ -109,4 +109,9 @@ public:
 	/// <param name="rightIndex">Right index.</param>
 	///	<returns>The index of the element to be searched.</returns>
 	int BinarySearch(int* array, int element, int leftIndex, int rightIndex);
+
+	/// <summary>
+	/// Destructor.
+	/// </summary>
+	~DynamicArray();
 };
